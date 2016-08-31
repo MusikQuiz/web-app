@@ -1,21 +1,24 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var path = require('path')
+
+var app   = path.join(__dirname, 'src')
+var build = path.join(__dirname, 'dist')
 
 module.exports = {
-  entry: [
-    './test.js'
-  ],
+  entry: app + '/index.jsx',
   output: {
-    path: __dirname,
-    filename: 'bundle.js'
+    path: build,
+    filename: 'app.bundle.js'
   },
   module: {
     loaders: [
-      {test: /\.css$/, loader: 'style!css' }
+      { test: /\.jsx?$/, include: app, loader: 'babel' },
+      { test: /\.css$/, loader: 'style!css' }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: app + '/index.html',
       inject: 'body'
     })
   ]
