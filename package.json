@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --inline --progress --colors",
-    "build": "webpack --progress --colors"
+    "build": "NODE_ENV=production webpack --config webpack.production.js --progress --colors"
   },
   "dependencies": {
     "html-webpack-plugin": "^2.22.0",
