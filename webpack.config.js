@@ -8,16 +8,19 @@ const PATHS = {
 
 module.exports = {
   entry: PATHS.app + '/index.jsx',
+
   output: {
     path: PATHS.build,
     filename: 'app.[hash].js'
   },
+
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel' },
       { test: /\.css$/, loader: 'style!css' }
     ]
   },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: PATHS.app + '/index.html',
