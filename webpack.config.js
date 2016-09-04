@@ -10,7 +10,7 @@ module.exports = {
   entry: PATHS.app + '/index.jsx',
   output: {
     path: PATHS.build,
-    filename: 'app.bundle.js'
+    filename: 'app.[hash].js'
   },
   module: {
     loaders: [
