@@ -1,0 +1,34 @@
+language: node_js
+node_js:
+- 5.6.0
+install:
+- npm install
+script:
+# - npm run lint && npm test && npm run build
+- npm run build
+# sudo: false
+# addons:
+#   apt:
+#     sources:
+#     - ubuntu-toolchain-r-test
+#     packages:
+#     - g++-4.8
+deploy:
+- provider: s3
+  cache_control: private, max-age=31536000
+  detect_encoding: true
+  access_key_id: $AWS_KEY
+  secret_access_key: $AWS_SECRET
+  bucket: musikquiz
+  skip_cleanup: true
+  local_dir: dist
+  on:
+    branch: prod
+env:
+  # matrix:
+  #   - CXX=g++-4.8
+  global:
+    # AWS_KEY
+    - secure: eg9OuX03jvRI9rUmJGEPSterjCc00zGr5iJKUQCeWBpzz1a/tII4WIXR3P8goBMkWjqw+BCoXqDeR0S4X5nk7SqbG+24qUxn/fTIMz7Z/MmpH5dYx8JfWG9epaMc+v5e9FrbuAtmI/rHVh2ZMHjtLJSR7pI+7oYe2mMOMsajLle3Wsen9SMp6sLAJc61njfK229uty36IrzGDmrOg42m6j/wbcVBDGKbiZr5QzzlPwaT3PYhTnGCOwYCge/4iURsMMww5xOt38vdK92rmcc7lRyx1N3e9vVoPEKsH21BRHMXy+zExk6dIaLVTnWeJP7xOoOWCw5lcvoF3nvI5fN/FL2sxbHlFaJuBHKoeiukxD8Sn8swnXqkwFGkxRm4/Zqu4lyrQwECQinvwBzloCXh4z5GXV1hhYIY0NJUSWiWZxFzerAONrdQu7u5Ti3G+N4fc3pwPp6xcGimKNmNkxgEWSTKawc05CP00sez5tjUn+yz4fIsXLLSsTmkT5hf7DMF2sbhuaklMsxOpXnBF5opBB5hmrWEoSSBVcWmaalHT3gm66jRMddba9er8D8p8aQNC0QTOL8+D1N9hb0bueGtkwkci6EWs0uCHtZnJJ8lAVuYecaT2jaThLp1DZZcVi5YXQwGwxBdnzk91IlvpMEV+Ws7M4yKm8/DITUKFb3pr4E=
+    # AWS_SECRET
+    - secure: OCsn6BBGuZsj8ta73xkGINnA53QjueN2STQsw78rjNYpmNJDD4rWw5m34QSK9FTRxFWWXp3LAla2CJpukml/CjRHlarmJPaunwY9wLa4Dy9EbjhqPZt1uPqrwgriPTBfDOJgMOaZswBC30UUALZKjN5ZVyLMRtOECYzAXTKoU2qEOjrCYkdWkRGWECoorU2b/kI3dnp8bs5smMIuCgo+VEQOY+NW/i1Tz1Z+Odn2+QTis8PN+U+rb5IJ7ZtLfN+ANDznKnKdFm9EHF3dxxd2FlQBXpMPhtHThJAotJwsr0qnRkWGeWpXFBSOhumutKTpTpGJnR3OQqMREtpwJKhvQje0qkjvz4vWfqI5q7UQbrMXOLklC/CBd1mIOUUN4YIhSKNnyrmOLXpThquG3Hhrh3Hy6quQ5IzqnUY6helqVl9RZnGwT+OYWcbc3+1POLNjTs26uErL7UX37einbVdbq5kAA8d23n632aGlE5tQ907DMKzsHIw4r26QrY4XVYZfnxwZK2bCarCYbGp8sukAkv6MA8UmCAQb9Rdgtkli2b+vPijj9APiOdhdYHZ145V/wPZ9yeeC1mm0c7kxrNSdKQPh1h+IFjUUKt3N7h7seNOlDL74fvSDcTyviuDbcMmNGjzg5k3FMtfQKvrE2Efe8roWprTbyYo/FlFcSyz5tTk=
