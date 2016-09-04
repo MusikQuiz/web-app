@@ -7,7 +7,6 @@ const PATHS = {
 }
 
 module.exports = {
-  devtool: 'eval',
   entry: PATHS.app + '/index.jsx',
   output: {
     path: PATHS.build,

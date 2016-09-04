@@ -4,7 +4,7 @@
   "description": "Web app",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --inline --progress --colors",
+    "start": "webpack-dev-server -d --hot --inline --progress --colors",
     "build": "NODE_ENV=production webpack --config webpack.production.js --progress --colors"
   },
   "dependencies": {
