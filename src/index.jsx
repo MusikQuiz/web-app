@@ -1,9 +1,10 @@
 import React from 'react'
 import { render } from 'react-dom'
+
 import Quiz from './Quiz/Quiz.jsx'
 import GenreList from './GenreList/GenreList.jsx'
 
-require('./style.css')
+require('./index.scss')
 
 const mountNode = document.getElementById('root')
 
