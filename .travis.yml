@@ -6,13 +6,13 @@ install:
 script:
 # - npm run lint && npm test && npm run build
 - npm run build
-# sudo: false
-# addons:
-#   apt:
-#     sources:
-#     - ubuntu-toolchain-r-test
-#     packages:
-#     - g++-4.8
+sudo: false
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
 deploy:
 - provider: s3
   cache_control: private, max-age=31536000
@@ -25,8 +25,8 @@ deploy:
   on:
     branch: prod
 env:
-  # matrix:
-  #   - CXX=g++-4.8
+  matrix:
+    - CXX=g++-4.8
   global:
     # AWS_KEY
     - secure: eg9OuX03jvRI9rUmJGEPSterjCc00zGr5iJKUQCeWBpzz1a/tII4WIXR3P8goBMkWjqw+BCoXqDeR0S4X5nk7SqbG+24qUxn/fTIMz7Z/MmpH5dYx8JfWG9epaMc+v5e9FrbuAtmI/rHVh2ZMHjtLJSR7pI+7oYe2mMOMsajLle3Wsen9SMp6sLAJc61njfK229uty36IrzGDmrOg42m6j/wbcVBDGKbiZr5QzzlPwaT3PYhTnGCOwYCge/4iURsMMww5xOt38vdK92rmcc7lRyx1N3e9vVoPEKsH21BRHMXy+zExk6dIaLVTnWeJP7xOoOWCw5lcvoF3nvI5fN/FL2sxbHlFaJuBHKoeiukxD8Sn8swnXqkwFGkxRm4/Zqu4lyrQwECQinvwBzloCXh4z5GXV1hhYIY0NJUSWiWZxFzerAONrdQu7u5Ti3G+N4fc3pwPp6xcGimKNmNkxgEWSTKawc05CP00sez5tjUn+yz4fIsXLLSsTmkT5hf7DMF2sbhuaklMsxOpXnBF5opBB5hmrWEoSSBVcWmaalHT3gm66jRMddba9er8D8p8aQNC0QTOL8+D1N9hb0bueGtkwkci6EWs0uCHtZnJJ8lAVuYecaT2jaThLp1DZZcVi5YXQwGwxBdnzk91IlvpMEV+Ws7M4yKm8/DITUKFb3pr4E=

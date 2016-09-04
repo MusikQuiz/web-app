@@ -1,24 +1,26 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 
-var app   = path.join(__dirname, 'src')
-var build = path.join(__dirname, 'dist')
+const PATHS = {
+  app  : path.join(__dirname, 'src'),
+  build: path.join(__dirname, 'dist')
+}
 
 module.exports = {
-  entry: app + '/index.jsx',
+  entry: PATHS.app + '/index.jsx',
   output: {
-    path: build,
-    filename: 'app.[hash].js'
+    path: PATHS.build,
+    filename: 'app.bundle.js'
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/, include: app, loader: 'babel' },
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel' },
       { test: /\.css$/, loader: 'style!css' }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: app + '/index.html',
+      template: PATHS.app + '/index.html',
       inject: 'body'
     })
   ]
