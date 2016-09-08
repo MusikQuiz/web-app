@@ -11,9 +11,11 @@ const mountNode = document.getElementById('root')
 class App extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
       showQuiz: false
     }
+
     this.genreToggle = this.genreToggle.bind(this)
   }
 
