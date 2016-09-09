@@ -114,7 +114,7 @@ class Quiz extends React.Component {
     if (this.state.currentQuestion < 2) {
       this.setState({currentQuestion: this.state.currentQuestion + 1})
     } else {
-      alert(`Congratulations! You got ${this.state.totalPoints}!`);
+      alert(`Congratulations! You got ${this.state.totalPoints}!`)
     }
   }
 }
