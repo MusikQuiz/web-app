@@ -111,7 +111,7 @@ class Quiz extends React.Component {
       <div>
         <h1>Scegliere la risposta giusta</h1>
         <p>{this.state.totalPoints}</p>
-        <pre>{this.state.spotifyData || "No data yet"}</pre>
+        <pre>{this.state.spotifyData || 'No data yet'}</pre>
         <video />
         <p>{currentQuestion.previewURL}</p>
 
