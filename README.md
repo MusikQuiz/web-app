@@ -1,5 +1,5 @@
 # web-app
-This web app is currently under construction. 
+This web app is currently under construction.
 
 ## Installation
 
