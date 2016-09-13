@@ -1,10 +1,9 @@
 import React from 'react'
 import AnswerList from './AnswerList.jsx'
-import { fetchJSON, compileQuiz } from '../helpers'
+import { fetchJSON, compileQuestions } from '../helpers'
 
 class Quiz extends React.Component {
   constructor(props) {
-
     super(props)
     this.state = {
       totalPoints: 0,
@@ -90,16 +89,18 @@ class Quiz extends React.Component {
         }
       ]
     }
+
     this.selectAnswer = this.selectAnswer.bind(this)
   }
+
   componentDidMount() {
     const limit = 40
     const genre = 'classical'
     fetchJSON(`https://api.spotify.com/v1/search?q=genre:${genre}&type=track&limit=${limit}`)
-    .then(tracks => {
+    .then(({ tracks: { items } }) => {
+      console.log(compileQuestions(items))
       this.setState({
-        spotifyData: JSON.stringify(tracks),
-        questions: compileQuiz(tracks)
+        spotifyData: JSON.stringify(items)
       })
     })
   }
