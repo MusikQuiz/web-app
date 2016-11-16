@@ -96,13 +96,15 @@ class Quiz extends React.Component {
   componentDidMount() {
     const limit = 40
     const genre = 'classical'
+
     fetchJSON(`https://api.spotify.com/v1/search?q=genre:${genre}&type=track&limit=${limit}`)
-    .then(({ tracks: { items } }) => {
-      console.log(compileQuestions(items))
-      this.setState({
-        spotifyData: JSON.stringify(items)
+      .then(({ tracks: { items } }) => {
+        console.log(compileQuestions(items))
+
+        this.setState({
+          spotifyData: JSON.stringify(items)
+        })
       })
-    })
   }
 
   render() {
@@ -113,7 +115,9 @@ class Quiz extends React.Component {
         <h1>Scegliere la risposta giusta</h1>
         <p>{this.state.totalPoints}</p>
         <pre>{this.state.spotifyData || 'No data yet'}</pre>
+
         <video />
+        
         <p>{currentQuestion.previewURL}</p>
 
         <AnswerList selectAnswer={this.selectAnswer} answers={currentQuestion.answers}/>
