@@ -23,7 +23,7 @@ class Quiz extends React.Component {
     fetchJSON(url)
     .then(({ tracks: { items } }) => {
       this.setState({ questions: compileQuestions(items) })
-    })
+    }
   }
 
   render() {

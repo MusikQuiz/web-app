@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server -d --hot --inline --progress --colors",
     "build": "NODE_ENV=production webpack --config webpack.production.js --progress --colors",
+    "clean": "rm -rf ./dist",
     "lint": "eslint --format table --ext .js,.jsx ."
   },
   "dependencies": {
@@ -16,6 +17,7 @@
     "react-dom": "^15.3.1"
   },
   "devDependencies": {
+    "babel-core": "^6.18.2",
     "babel-loader": "^6.2.5",
     "babel-plugin-lodash": "^3.2.8",
     "babel-polyfill": "^6.13.0",
