@@ -8,10 +8,10 @@ const answerItemStyles = classNames({
   'correct-answer': true
 })
 
-const AnswerItem = (props) => {
-  const handleClick = () => props.selectAnswer(props.answer.songID)
+const AnswerItem = ({ selectAnswer, answer }) => {
+  const handleClick = () => selectAnswer(answer.songID)
 
-  return <li className={answerItemStyles} onClick={handleClick}>{props.answer.songName}</li>
+  return <li className={answerItemStyles} onClick={handleClick}>{answer.songName}</li>
 }
 
 export default AnswerItem

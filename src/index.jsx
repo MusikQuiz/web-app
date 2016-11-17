@@ -39,7 +39,9 @@ class App extends React.Component {
   renderGenreList() {
     const genres = ['Classical', '60s', '80s']
 
-    if (!this.state.showQuiz) return <GenreList genres={genres} genreToggle={this.genreToggle}/>
+    if (!this.state.showQuiz) {
+      return <GenreList genres={genres} genreToggle={this.genreToggle}/>
+    }
   }
 
   renderQuiz() {
