@@ -23,7 +23,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Name That Tune!</h1>
+        <h1>Musik Quiz</h1>
 
         {this.renderGenreList()}
 

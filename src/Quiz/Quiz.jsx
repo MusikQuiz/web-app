@@ -35,7 +35,7 @@ class Quiz extends React.Component {
 
     return (
       <div>
-        <h1>Scegli la risposta giusta</h1>
+        <h1>Choose the correct title</h1>
 
         <p>{this.state.totalPoints}</p>
 
