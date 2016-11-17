@@ -3,6 +3,7 @@ import classNames from 'classnames'
 
 require('./AnswerItem.scss')
 
+// TODO: rename class since they are not all correct answers
 const answerItemStyles = classNames({
   'correct-answer': true
 })

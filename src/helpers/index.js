@@ -20,70 +20,41 @@ export function fetchJSON(url, options) {
   .then(json)
 }
 
-export function compileQuestions(tracks) {
-  // const numQuestions = tracks.length / 4
-  console.log(_.map([]))
+// Quiz compiling
+export function compileQuestions(songs, numAnswersPerQuestion = 4) {
+  songs = _.shuffle(songs)
 
-  // Shuffle original array
+  const questionsWithAnswers = _.reduce(songs, (compilation, song, i) => {
+    // E.g. reduce 40 answers to 10 questions of 4 answers each
+    const questionIndex = Math.floor(i / numAnswersPerQuestion)
 
+    // If a question has no answers yet, create the question object
+    compilation[questionIndex] = compilation[questionIndex] || { answers: [] }
 
+    const songData = {
+      songName   : song.name,
+      songID     : song.id,
+      songArtist : song.artists[0].name,
+      songPreview: song.preview_url
+    }
 
+    compilation[questionIndex].answers.push(songData)
 
-  console.log(tracks)
+    return compilation
+  }, [])
 
+  return chooseRandomCorrectAnswers(questionsWithAnswers)
 }
 
+export function chooseRandomCorrectAnswers(questions) {
+  _.each(questions, ({ answers }, i, questionsArray) => {
+    const randomAnswerIndex = _.random(0, answers.length - 1)
 
-// questions: [
-//   {
-//     previewURL: 'http://www.example.com',
-//     answers: [
-//       {
-//         songName: 'Toccata & Fugue in D Minor',
-//         songArtist: 'Bach',
-//         songID: 0
-//       },
-//       {
-//         songName: 'Die Zauberflöte',
-//         songArtist: 'Mozart',
-//         songID: 1
-//       },
-//       {
-//         songName: 'Beethoven Symphony No. 5',
-//         songArtist: 'Chopin',
-//         songID: 2
-//       },
-//       {
-//         songName: 'Claire de Lune',
-//         songArtist: 'Debussy',
-//         songID: 3
-//       }
-//     ],
-//     correctAnswerID: 2
-//   },
-//   {
-//     previewURL: 'http://www.example.com',
-//     answers: [
-//       {
-//         songName: 'Spiegel im Spiegel',
-//         songArtist: 'Avro Pärt',
-//         songID: 0
-//       },
-//       {
-//         songName: 'Moonlight Sonata',
-//         songArtist: 'Beethoven',
-//         songID: 1
-//       },
-//       {
-//         songName: 'Der Vogelfänger bin ich ja',
-//         songArtist: 'Mozart',
-//         songID: 2
-//       },
-//       {
-//         songName: 'Symphony No. 1231',
-//         songArtist: 'Mahler',
-//         songID: 3
-//       }
-//     ],
-//     correctAnswerID: 0
-//   },
+    const randomAnswer = answers[randomAnswerIndex]
+
+    questionsArray[i].previewURL = randomAnswer.songPreview
+    questionsArray[i].correctAnswerID = randomAnswer.songID
+  })
+
+  return questions
+}
