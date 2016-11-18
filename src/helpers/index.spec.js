@@ -1,3 +1,4 @@
+/*eslint-disable camelcase*/
 import chai from 'chai'
 import * as helpers from './index'
 
