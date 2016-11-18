@@ -18,6 +18,7 @@ class App extends React.Component {
     }
 
     this.genreToggle = this.genreToggle.bind(this)
+    this.endQuiz = this.endQuiz.bind(this)
   }
 
   render() {
@@ -32,10 +33,6 @@ class App extends React.Component {
     )
   }
 
-  genreToggle() {
-    this.setState({ showQuiz: !this.state.showQuiz })
-  }
-
   renderGenreList() {
     const genres = ['Classical', '60s', '80s']
 
@@ -45,7 +42,15 @@ class App extends React.Component {
   }
 
   renderQuiz() {
-    if (this.state.showQuiz) return <Quiz />
+    if (this.state.showQuiz) return <Quiz onEndQuiz={this.endQuiz} />
+  }
+
+  genreToggle() {
+    this.setState({ showQuiz: !this.state.showQuiz })
+  }
+
+  endQuiz() {
+    this.setState({ showQuiz: false })
   }
 }
 

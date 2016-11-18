@@ -30,36 +30,46 @@ class Quiz extends React.Component {
   }
 
   render() {
-    if (!this.state.questions) {
+    const { questions, currentQuestionID: id, totalPoints } = this.state
+
+    if (!questions) {
       return <div> Loading quiz...</div>
     }
 
-    const currentQuestion = this.state.questions[this.state.currentQuestionID]
+    const currentQuestion = questions[id]
 
     return (
       <div>
         <h1>Choose the correct title</h1>
 
-        <p>{this.state.totalPoints}</p>
+        <p>{totalPoints}</p>
 
         <Audio previewURL={currentQuestion.previewURL}/>
 
-        <AnswerList selectAnswer={this.selectAnswer} answers={currentQuestion.answers}/>
+        <AnswerList
+          selectAnswer={this.selectAnswer}
+          answers={currentQuestion.answers}
+        />
       </div>
     )
   }
 
-  selectAnswer(songID) {
-    // Check if clicked songID is equal to correctAnswerID
-    if (songID === this.state.questions[this.state.currentQuestionID].correctAnswerID) {
-      this.setState({totalPoints: this.state.totalPoints + 100})
+  selectAnswer(selectedSongID) {
+    const { questions, currentQuestionID: id, totalPoints } = this.state
+    const currentQuestion = questions[id]
+
+    if (selectedSongID === currentQuestion.correctAnswerID) {
+      this.setState({ totalPoints: totalPoints + 100 })
     }
 
-    if (this.state.currentQuestionID < this.state.questions.length - 1) {
-      this.setState({currentQuestionID: this.state.currentQuestionID + 1})
+    if (id < questions.length - 1) {
+      this.setState({ currentQuestionID: id + 1 })
+
     } else {
-      // TODO: Set state "quiz complete" to true, and render a different page
-      alert(`Congratulations! You got ${this.state.totalPoints}!`)
+      this.props.endQuiz()
+
+      // Set points in higher up component :o
+      alert(`Congratulations! You scored ${totalPoints} points!`)
     }
   }
 }
