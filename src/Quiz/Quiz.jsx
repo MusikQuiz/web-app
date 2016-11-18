@@ -1,6 +1,6 @@
 import React from 'react'
-import AnswerList from './AnswerList.jsx'
-import Audio from './Audio.jsx'
+import QuizQuestions from './QuizQuestions.jsx'
+import QuizResults from './QuizResults.jsx'
 
 import { fetchJSON, compileQuestions } from '../helpers'
 import { SPOTIFY_API } from '../constants'
@@ -11,11 +11,11 @@ class Quiz extends React.Component {
 
     this.state = {
       totalPoints: 0,
-      currentQuestionID: 0,
+      showResults: false,
       questions: null
     }
 
-    this.selectAnswer = this.selectAnswer.bind(this)
+    this.showResults = this.showResults.bind(this)
   }
 
   componentDidMount() {
@@ -30,37 +30,21 @@ class Quiz extends React.Component {
   }
 
   render() {
-    if (!this.state.questions) {
-      return <div> Loading quiz...</div>
+    const { questions, showResults, totalPoints} = this.state
+
+    if (!questions) {
+      return <div>Loading quiz...</div>
     }
 
-    const currentQuestion = this.state.questions[this.state.currentQuestionID]
+    if (showResults) {
+      return <QuizResults points={totalPoints} />
+    }
 
-    return (
-      <div>
-        <h1>Choose the correct title</h1>
-
-        <p>{this.state.totalPoints}</p>
-
-        <Audio previewURL={currentQuestion.previewURL}/>
-
-        <AnswerList selectAnswer={this.selectAnswer} answers={currentQuestion.answers}/>
-      </div>
-    )
+    return <QuizQuestions questions={this.state.questions} onQuizEnd={this.showResults} />
   }
 
-  selectAnswer(songID) {
-    // Check if clicked songID is equal to correctAnswerID
-    if (songID === this.state.questions[this.state.currentQuestionID].correctAnswerID) {
-      this.setState({totalPoints: this.state.totalPoints + 100})
-    }
-
-    if (this.state.currentQuestionID < this.state.questions.length - 1) {
-      this.setState({currentQuestionID: this.state.currentQuestionID + 1})
-    } else {
-      // TODO: Set state "quiz complete" to true, and render a different page
-      alert(`Congratulations! You got ${this.state.totalPoints}!`)
-    }
+  showResults(totalPoints) {
+    this.setState({ showResults: true, totalPoints })
   }
 }
 
