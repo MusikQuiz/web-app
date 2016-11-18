@@ -2,7 +2,7 @@ import React from 'react'
 import QuizQuestions from './QuizQuestions.jsx'
 import QuizResults from './QuizResults.jsx'
 
-import { fetchJSON, compileQuestions } from '../helpers'
+import { fetchJSON, compileQuiz } from '../helpers'
 import { SPOTIFY_API } from '../constants'
 
 class Quiz extends React.Component {
@@ -25,7 +25,7 @@ class Quiz extends React.Component {
 
     fetchJSON(url)
     .then(({ tracks: { items } }) => {
-      this.setState({ questions: compileQuestions(items) })
+      this.setState({ questions: compileQuiz(items) })
     })
   }
 

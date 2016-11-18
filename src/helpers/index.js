@@ -21,7 +21,13 @@ export function fetchJSON(url, options) {
 }
 
 // Quiz compiling
-export function compileQuestions(songs, numAnswersPerQuestion = 4) {
+export function compileQuiz(songs, numAnswersPerQuestion = 4) {
+  const setOfAnswers = createSetOfAnswers(songs, numAnswersPerQuestion)
+
+  return chooseRandomCorrectAnswers(setOfAnswers)
+}
+
+export function createSetOfAnswers(songs, numAnswersPerQuestion) {
   songs = _.shuffle(songs)
 
   const questionsWithAnswers = _.reduce(songs, (compilation, song, i) => {
@@ -43,7 +49,7 @@ export function compileQuestions(songs, numAnswersPerQuestion = 4) {
     return compilation
   }, [])
 
-  return chooseRandomCorrectAnswers(questionsWithAnswers)
+  return questionsWithAnswers
 }
 
 export function chooseRandomCorrectAnswers(questions) {
