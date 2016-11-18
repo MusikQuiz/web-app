@@ -1,33 +1,25 @@
-# web-app
-This web app is currently under construction.
+[![Build Status](https://travis-ci.org/Musikdiscover/web-app.svg?branch=prod)](https://travis-ci.org/Musikdiscover/web-app)
+
+# Musik Quiz Web App
+Welcome to the Musik Quiz web app! This simple web application tests your musical knowledge by turning data from the Spotify API into quizzes. Listen to the track and choose which song or piece you think it is. This type of quiz, also known as "Drop the Needle" in musicianship classes, helps train your ear to notice patterns among composers and styles.
+
+## Technologies
+Code: ES6, React, SCSS
+
+Testing: Mocha, Chai, ESLint
+
+Tooling: Webpack, NPM, Travis CI, AWS S3
 
 ## Installation
+This repo uses node 5.x and npm 3.x, so you may need to download a new version of node. The easiest way is to download [nvm](https://github.com/creationix/nvm). There is an `.nvmrc` file in the root of the project, so you can just run `nvm use` to switch to the correct version of node.
+
+Install dependencies by running the following in the root of the project:
+
+- `npm i`
+- **Note:** You must use npm 3. Type `npm -v` to ensure you have a 3.x version.
 
 ## NPM Commands
 - To run locally, run `npm start` and head to `http://localhost:8080/`
+- Run tests with `npm test` or use `npm run test:watch` to watch files and rerun tests after any code changes
+- To make sure your code passes linting: `npm run lint`
 - To create the build: `npm run build`
-
-## Developer Tools
-
-### Syntax highlighting for ES6 and React JSX
-- Install [babel](https://packagecontrol.io/packages/Babel) via the package manager in Sublime Text
-  - **Note:** Sublime Text 3 is required for this plugin
-- Set the plugin as the default syntax for a particular extension
-  - Open a file with the `.js` extension
-  - Select `View` from the menu
-  - Then `Syntax -> Open all with current extension as...`
-  - Then `Babel -> JavaScript (Babel)`
-  - Repeat for any other extensions, e.g. `.jsx`
-
-### Automatic JavaScript linting in Sublime Text
-- Install [SublimeLinter](http://sublimelinter.readthedocs.org/en/latest/installation.html) following the instructions under "Installing via Package Control"
-- Install [SublimeLinter-eslint](https://github.com/roadhump/SublimeLinter-eslint) with the package manager. The package is called `SublimeLinter-contrib-eslint`
-
-### Code expander
-- Examples:
-  - `div.cool-class` becomes `<div className="cool-class"></div>`
-  - `a` becomes `<a href=""></a>`
-- Install [Emmet](https://github.com/sergeche/emmet-sublime) via Sublime Text package manager
-- Configure Emmet to work with React, e.g. classes expand to `className` instead of `class`
-- Follow the instructions under [Get Emmet working](http://www.nitinh.com/2015/02/setting-sublime-text-react-jsx-development/)
-  - **Note:** Add the last snippet of code to `reg_replace.sublime-settings` by navigating to  `Sublime Text -> Preferences -> Package Settings -> Reg Replace -> Settings-User`
