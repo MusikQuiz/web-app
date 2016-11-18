@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
 
@@ -22,7 +23,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Name That Tune!</h1>
+        <h1>Musik Quiz</h1>
 
         {this.renderGenreList()}
 
@@ -38,7 +39,9 @@ class App extends React.Component {
   renderGenreList() {
     const genres = ['Classical', '60s', '80s']
 
-    if (!this.state.showQuiz) return <GenreList genres={genres} genreToggle={this.genreToggle}/>
+    if (!this.state.showQuiz) {
+      return <GenreList genres={genres} genreToggle={this.genreToggle}/>
+    }
   }
 
   renderQuiz() {

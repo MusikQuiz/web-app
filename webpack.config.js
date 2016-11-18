@@ -1,5 +1,6 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const PATHS = {
   app  : path.join(__dirname, 'src'),

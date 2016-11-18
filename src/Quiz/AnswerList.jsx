@@ -1,8 +1,16 @@
 import React from 'react'
 import AnswerItem from './AnswerItem.jsx'
 
-const AnswerList = (props) => {
-  const answers = props.answers.map((answer, i) => <AnswerItem answer={answer} key={i} selectAnswer={props.selectAnswer}/>)
+const AnswerList = ({ answers, selectAnswer }) => {
+  answers = answers.map((answer) => {
+    return (
+      <AnswerItem
+        answer={answer}
+        key={answer.songID}
+        selectAnswer={selectAnswer}
+      />
+    )
+  })
 
   return (
     <div>

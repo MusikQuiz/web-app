@@ -1,104 +1,48 @@
 import React from 'react'
 import AnswerList from './AnswerList.jsx'
+import Audio from './Audio.jsx'
+
+import { fetchJSON, compileQuestions } from '../helpers'
+import { SPOTIFY_API } from '../constants'
 
 class Quiz extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
       totalPoints: 0,
-      currentQuestion: 0,
-      questions: [
-        {
-          previewURL: 'http://www.example.com',
-          answers: [
-            {
-              songName: 'Toccata & Fugue in D Minor',
-              songArtist: 'Bach',
-              songID: 0
-            },
-            {
-              songName: 'Die Zauberflöte',
-              songArtist: 'Mozart',
-              songID: 1
-            },
-            {
-              songName: 'Beethoven Symphony No. 5',
-              songArtist: 'Chopin',
-              songID: 2
-            },
-            {
-              songName: 'Claire de Lune',
-              songArtist: 'Debussy',
-              songID: 3
-            }
-          ],
-          correctAnswerID: 2
-        },
-        {
-          previewURL: 'http://www.example.com',
-          answers: [
-            {
-              songName: 'Spiegel im Spiegel',
-              songArtist: 'Avro Pärt',
-              songID: 0
-            },
-            {
-              songName: 'Moonlight Sonata',
-              songArtist: 'Beethoven',
-              songID: 1
-            },
-            {
-              songName: 'Der Vogelfänger bin ich ja',
-              songArtist: 'Mozart',
-              songID: 2
-            },
-            {
-              songName: 'Symphony No. 1231',
-              songArtist: 'Mahler',
-              songID: 3
-            }
-          ],
-          correctAnswerID: 0
-        },
-        {
-          previewURL: 'http://www.example.com',
-          answers: [
-            {
-              songName: 'Primavera',
-              songArtist: 'Vivaldi',
-              songID: 0
-            },
-            {
-              songName: 'La donna è mobile',
-              songArtist: 'Rossini',
-              songID: 1
-            },
-            {
-              songName: 'Symphony No. 3.14',
-              songArtist: 'Cage',
-              songID: 2
-            },
-            {
-              songName: 'Also sprach Zarathustra',
-              songArtist: 'Strauss',
-              songID: 3
-            }
-          ],
-          correctAnswerID: 3
-        }
-      ]
+      currentQuestionID: 0,
+      questions: null
     }
+
     this.selectAnswer = this.selectAnswer.bind(this)
   }
+
+  componentDidMount() {
+    const limit = 40
+    const genre = 'classical'
+    const url = `${SPOTIFY_API}/search?q=genre:${genre}&type=track&limit=${limit}`
+
+    fetchJSON(url)
+    .then(({ tracks: { items } }) => {
+      this.setState({ questions: compileQuestions(items) })
+    })
+  }
+
   render() {
-    const currentQuestion = this.state.questions[this.state.currentQuestion]
+    if (!this.state.questions) {
+      return <div> Loading quiz...</div>
+    }
+
+    const currentQuestion = this.state.questions[this.state.currentQuestionID]
 
     return (
       <div>
-        <h1>Scegliere la risposta giusta</h1>
+        <h1>Choose the correct title</h1>
+
         <p>{this.state.totalPoints}</p>
-        <video />
-        <p>{currentQuestion.previewURL}</p>
+
+        <Audio previewURL={currentQuestion.previewURL}/>
 
         <AnswerList selectAnswer={this.selectAnswer} answers={currentQuestion.answers}/>
       </div>
@@ -107,13 +51,14 @@ class Quiz extends React.Component {
 
   selectAnswer(songID) {
     // Check if clicked songID is equal to correctAnswerID
-    if (songID === this.state.questions[this.state.currentQuestion].correctAnswerID) {
+    if (songID === this.state.questions[this.state.currentQuestionID].correctAnswerID) {
       this.setState({totalPoints: this.state.totalPoints + 100})
     }
 
-    if (this.state.currentQuestion < 2) {
-      this.setState({currentQuestion: this.state.currentQuestion + 1})
+    if (this.state.currentQuestionID < this.state.questions.length - 1) {
+      this.setState({currentQuestionID: this.state.currentQuestionID + 1})
     } else {
+      // TODO: Set state "quiz complete" to true, and render a different page
       alert(`Congratulations! You got ${this.state.totalPoints}!`)
     }
   }
