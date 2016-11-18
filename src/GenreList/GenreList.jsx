@@ -1,8 +1,10 @@
 import React from 'react'
 import GenreItem from './GenreItem.jsx'
 
-const GenreList = (props) => {
-  const genres = props.genres.map((genre, i) => <GenreItem genre={genre} key={i} genreToggle={props.genreToggle}/>)
+const GenreList = ({ genres, genreToggle}) => {
+  genres = genres.map((genre, i) =>
+    <GenreItem genre={genre} key={i} genreToggle={genreToggle}/>
+  )
 
   return (
     <div>

@@ -1,5 +1,7 @@
 import React from 'react'
 import AnswerList from './AnswerList.jsx'
+import Audio from './Audio.jsx'
+
 import { fetchJSON, compileQuestions } from '../helpers'
 import { SPOTIFY_API } from '../constants'
 
@@ -9,7 +11,8 @@ class Quiz extends React.Component {
 
     this.state = {
       totalPoints: 0,
-      currentQuestion: 0
+      currentQuestionID: 0,
+      questions: null
     }
 
     this.selectAnswer = this.selectAnswer.bind(this)
@@ -31,7 +34,7 @@ class Quiz extends React.Component {
       return <div> Loading quiz...</div>
     }
 
-    const currentQuestion = this.state.questions[this.state.currentQuestion]
+    const currentQuestion = this.state.questions[this.state.currentQuestionID]
 
     return (
       <div>
@@ -39,9 +42,7 @@ class Quiz extends React.Component {
 
         <p>{this.state.totalPoints}</p>
 
-        <video controls autoPlay name="media">
-          <source src={currentQuestion.previewURL} type="audio/mpeg"/>
-        </video>
+        <Audio previewURL={currentQuestion.previewURL}/>
 
         <AnswerList selectAnswer={this.selectAnswer} answers={currentQuestion.answers}/>
       </div>
@@ -50,12 +51,12 @@ class Quiz extends React.Component {
 
   selectAnswer(songID) {
     // Check if clicked songID is equal to correctAnswerID
-    if (songID === this.state.questions[this.state.currentQuestion].correctAnswerID) {
+    if (songID === this.state.questions[this.state.currentQuestionID].correctAnswerID) {
       this.setState({totalPoints: this.state.totalPoints + 100})
     }
 
-    if (this.state.currentQuestion < this.state.questions.length - 1) {
-      this.setState({currentQuestion: this.state.currentQuestion + 1})
+    if (this.state.currentQuestionID < this.state.questions.length - 1) {
+      this.setState({currentQuestionID: this.state.currentQuestionID + 1})
     } else {
       // TODO: Set state "quiz complete" to true, and render a different page
       alert(`Congratulations! You got ${this.state.totalPoints}!`)
