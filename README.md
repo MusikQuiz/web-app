@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/Musikdiscover/web-app.svg?branch=prod)](https://travis-ci.org/Musikdiscover/web-app)
 
 # Musik Quiz Web App
-Welcome to the Musik Quiz web app! This simple web application tests your musical knowledge by turning data from the Spotify API into quizzes. Listen to the track and choose which song or piece you think it is. This type of quiz, also known as "Drop the Needle" in musicianship classes, helps train your ear to notice patterns among composers and styles.
+Welcome to the Musik Quiz web app! This simple web application tests your musical knowledge by turning data from the Spotify API into quizzes. Listen to the track and choose which song or piece you think it is. This type of quiz, also known as "Drop the Needle" in musicianship classes, helps train your ear to identify common themes and patterns among composers.
 
 ## Technologies
 **Code:** ES6, React, SCSS
