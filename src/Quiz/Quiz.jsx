@@ -10,8 +10,8 @@ class Quiz extends React.Component {
     super(props)
 
     this.state = {
-      totalPoints: 0,
-      showResults: false,
+      finalScore: 0,
+      isQuizInProgress: true,
       questions: null
     }
 
@@ -30,21 +30,21 @@ class Quiz extends React.Component {
   }
 
   render() {
-    const { questions, showResults, totalPoints} = this.state
+    const { questions, isQuizInProgress, finalScore} = this.state
 
     if (!questions) {
       return <div>Loading quiz...</div>
     }
 
-    if (showResults) {
-      return <QuizResults points={totalPoints} />
+    if (isQuizInProgress) {
+      return <QuizQuestions questions={this.state.questions} onQuizEnd={this.showResults} />
     }
 
-    return <QuizQuestions questions={this.state.questions} onQuizEnd={this.showResults} />
+    return <QuizResults points={finalScore} />
   }
 
-  showResults(totalPoints) {
-    this.setState({ showResults: true, totalPoints })
+  showResults(finalScore) {
+    this.setState({ isQuizInProgress: false, finalScore })
   }
 }
 

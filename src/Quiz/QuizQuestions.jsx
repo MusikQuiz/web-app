@@ -14,7 +14,6 @@ class QuizQuestions extends React.Component {
     this.selectAnswer = this.selectAnswer.bind(this)
   }
 
-
   render() {
     const currentQuestion = this.props.questions[this.state.currentQuestionID]
 
@@ -37,18 +36,23 @@ class QuizQuestions extends React.Component {
   selectAnswer(selectedSongID) {
     const questions = this.props.questions
     const { currentQuestionID: id, currentPoints } = this.state
-    const currentQuestion = questions[id]
 
-    if (selectedSongID === currentQuestion.correctAnswerID) {
+    const currentQuestion = questions[id]
+    const isLastQuestion  = id === questions.length - 1
+    const isCorrect       = selectedSongID === currentQuestion.correctAnswerID
+
+    if (isLastQuestion) {
+      const finalScore = isCorrect ? currentPoints + 100 : currentPoints
+
+      this.props.onQuizEnd(finalScore)
+      return
+    }
+
+    if (isCorrect) {
       this.setState({ currentPoints: currentPoints + 100 })
     }
 
-    if (id < questions.length - 1) {
-      this.setState({ currentQuestionID: id + 1 })
-
-    } else {
-      this.props.onQuizEnd(currentPoints + 100)
-    }
+    this.setState({ currentQuestionID: id + 1 })
   }
 }
 
