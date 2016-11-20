@@ -37,7 +37,7 @@ class Quiz extends React.Component {
     }
 
     if (isQuizInProgress) {
-      return <QuizQuestions questions={this.state.questions} onQuizEnd={this.showResults} />
+      return <QuizQuestions questions={questions} onQuizEnd={this.showResults} />
     }
 
     return <QuizResults points={finalScore} />
