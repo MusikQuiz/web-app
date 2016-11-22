@@ -1,4 +1,5 @@
-// @import 'reset'
+@import 'partials/reset';
+@import 'partials/colors';
 
 // App-level resets
 html {
@@ -12,5 +13,17 @@ html {
 
 body {
   min-height: 100%;
-  background: beige;
+  background: $timberwolf;
+}
+
+.home {
+  width: 80%;
+  margin: 50px auto;
+}
+
+.title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: $black_kombu_green;
 }

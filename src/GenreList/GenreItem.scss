@@ -1,3 +1,16 @@
-div {
-  
+@import 'src/partials/colors';
+
+.genre-item {
+  float:left;
+  margin-right: 8px;
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 100px;
+  text-align: center;
+  border: 1px solid $black_kombu_green;
+  border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

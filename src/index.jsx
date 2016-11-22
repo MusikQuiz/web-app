@@ -23,8 +23,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Musik Quiz</h1>
+      <div className="home">
+        <h1 className="title">Musik Quiz</h1>
 
         {this.renderGenreList()}
 
@@ -34,7 +34,7 @@ class App extends React.Component {
   }
 
   renderGenreList() {
-    const genres = ['Classical', '60s', '80s']
+    const genres = ['Classical', '60s', '80s', 'Rock']
 
     if (!this.state.showQuiz) {
       return <GenreList genres={genres} genreToggle={this.genreToggle}/>
