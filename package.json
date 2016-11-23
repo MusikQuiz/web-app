@@ -1,8 +1,8 @@
 {
   "name": "web-app",
   "version": "0.0.0",
-  "description": "Web app",
-  "main": "index.js",
+  "description": "Musik Quiz tests your musical knowledge by turning data from the Spotify API into quizzes.",
+  "main": "App.jsx",
   "scripts": {
     "start": "webpack-dev-server -d --hot --inline --progress --colors",
     "build": "NODE_ENV=production webpack --config webpack.production.js --progress --colors",
