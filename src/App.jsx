@@ -2,10 +2,11 @@ import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
 
+import Header from './Header/Header.jsx'
 import Quiz from './Quiz/Quiz.jsx'
 import GenreList from './GenreList/GenreList.jsx'
 
-require('./index.scss')
+require('./App.scss')
 
 const mountNode = document.getElementById('root')
 
@@ -24,7 +25,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="home">
-        <h1 className="title">Musik Quiz</h1>
+        <Header />
 
         {this.renderGenreList()}
 
