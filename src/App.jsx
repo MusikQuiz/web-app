@@ -3,10 +3,10 @@ import React from 'react'
 import { render } from 'react-dom'
 
 require('./App.scss')
+
 import Header from './Header/Header.jsx'
 import Quiz from './Quiz/Quiz.jsx'
 import GenreList from './GenreList/GenreList.jsx'
-
 
 const mountNode = document.getElementById('root')
 
