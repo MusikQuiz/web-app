@@ -15,7 +15,7 @@ const GenreList = ({ genres, genreToggle}) => {
       <ul className="genre-list">
         {genres}
 
-        <div className="clear-fix"></div>
+        <div className="clear-fix" />
       </ul>
     </div>
   )
