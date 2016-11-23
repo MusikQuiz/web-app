@@ -8,7 +8,7 @@ const PATHS = {
 }
 
 module.exports = {
-  entry: PATHS.app + '/index.jsx',
+  entry: PATHS.app + '/App.jsx',
 
   output: {
     path: PATHS.build,
