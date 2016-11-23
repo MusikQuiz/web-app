@@ -6,7 +6,6 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 config.plugins.push(
   new LodashModuleReplacementPlugin,
-  new webpack.optimize.OccurrenceOrderPlugin,
   new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
 
   // Helps minify React.js code and gets rid of warnings

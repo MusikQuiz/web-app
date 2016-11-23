@@ -1,6 +1,7 @@
 const path = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const PATHS = {
   app  : path.join(__dirname, 'src'),
@@ -16,10 +17,23 @@ module.exports = {
   },
 
   module: {
-    loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel' },
-      { test: /\.scss$/, loaders: ['style', 'css', 'sass'] },
-      { test: /\.(png|jpg|jpeg|gif)$/, loader: 'file' }
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader!sass-loader'
+        })
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        loader: 'file-loader'
+      }
     ]
   },
 
@@ -27,6 +41,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: PATHS.app + '/index.html',
       inject: 'body'
-    })
+    }),
+    new ExtractTextPlugin('app.[hash].css')
   ]
 }

@@ -2,11 +2,11 @@ import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
 
+require('./App.scss')
 import Header from './Header/Header.jsx'
 import Quiz from './Quiz/Quiz.jsx'
 import GenreList from './GenreList/GenreList.jsx'
 
-require('./App.scss')
 
 const mountNode = document.getElementById('root')
 
