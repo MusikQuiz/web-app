@@ -20,7 +20,7 @@ class Quiz extends React.Component {
 
   componentDidMount() {
     const limit = 40
-    const genre = 'classical'
+    const genre = 'rock'
     const url = `${SPOTIFY_API}/search?q=genre:${genre}&type=track&limit=${limit}`
 
     fetchJSON(url)
