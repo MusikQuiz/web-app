@@ -11,7 +11,7 @@ Welcome to the Musik Quiz web app! This simple web application tests your musica
 **Tooling:** Webpack, npm, Travis CI, AWS S3
 
 ## Installation
-This repo uses node 5.x and npm 3.x, so you may need to download a new version of node. The easiest way is to download [nvm](https://github.com/creationix/nvm). There is an `.nvmrc` file in the root of the project, so you can just run `nvm use` to switch to the correct version of node.
+This repo uses node 6.x and npm 3.x, so you may need to download a new version of node. The easiest way is to download [nvm](https://github.com/creationix/nvm). There is an `.nvmrc` file in the root of the project, so you can just run `nvm use` to switch to the correct version of node.
 
 Install dependencies by running the following in the root of the project:
 
